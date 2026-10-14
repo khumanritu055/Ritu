@@ -7,9 +7,10 @@ revealItems.forEach(function(el,i){el.classList.add('reveal');if(el.matches('.se
 if('IntersectionObserver' in window){var observer=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target)}})},{threshold:.12});revealItems.forEach(function(el){observer.observe(el)})}else{revealItems.forEach(function(el){el.classList.add('is-visible')})}
 if(!btn)return;
 function show(src){img.src=src;btn.classList.add('has')}
-img.onerror=function(){if(img.getAttribute('src')!=='photo/photo.png'){try{localStorage.removeItem('ritu-photo')}catch(e){}show('photo/photo.png')}else{btn.classList.remove('has')}};
+var tries=['photo/photo.png','photo.png','photo.jpg','photo.jpeg'],ti=0;
+img.onerror=function(){var cur=img.getAttribute('src')||'';if(cur.indexOf('data:')===0){try{localStorage.removeItem('ritu-photo')}catch(e){}ti=0;show(tries[0]);return}ti++;if(ti<tries.length){show(tries[ti])}else{btn.classList.remove('has')}};
 var saved=null;try{saved=localStorage.getItem('ritu-photo')}catch(e){}
-show(saved||'photo/photo.png');
+show(saved||tries[0]);
 btn.addEventListener('click',function(){inp.click()});
 inp.addEventListener('change',function(){
 var f=inp.files&&inp.files[0];if(!f)return;
