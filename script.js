@@ -32,7 +32,7 @@ f.addEventListener('submit',function(e){
 e.preventDefault();
 var data=new FormData(f),subject='Portfolio enquiry from '+data.get('name');
 var body='Name: '+data.get('name')+'\nEmail: '+data.get('email')+'\n\nMessage:\n'+data.get('message');
-var gmail='https://mail.google.com/mail/?view=cm&fs=1&to=ritukhuman055%40gmail.com&su='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+var gmail='https://mail.google.com/mail/?view=cm&fs=1&to=khumanritu055%40gmail.com&su='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
 window.open(gmail,'_blank','noopener');
 m.textContent='Gmail opened in a new tab with your message ready. Please sign in if asked, then press Send.';
 });
